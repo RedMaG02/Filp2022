@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "eTlTsH2hR5mL2btnavwdNse8OeYRyKWGra0uFi2+opHJUYjVsWKSiaEDAxJ1SlK/rZjjiyLev2W7MY8IyNPHrA==",
+  "success": true,
+  "projectFilePath": "J:\\FILP\\Filp2022\\PressFsharp5\\PressFsharp5\\PressFsharp5.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\RedMa\\.nuget\\packages\\fsharp.core\\6.0.1\\fsharp.core.6.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
