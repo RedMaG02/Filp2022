@@ -19,6 +19,10 @@ let obolz15 x func init =
             z15 x func new_init (del-1)
     z15 x func init x
 
+let euler x =
+        obolz15 x (fun a b -> a + 1) 0
+    
+
 [<EntryPoint>]
 let main argv =
     Console.WriteLine(obolz15 15 (fun x y -> x+y) 0)
@@ -26,4 +30,5 @@ let main argv =
     Console.WriteLine(obolz15 15 (fun x y -> if x > y then x else y) 0)
     Console.WriteLine(obolz15 15 (fun x y -> if x<y then x else y) 1)
     Console.WriteLine(obolz15 15 (fun x y -> x+1) 0)
+    Console.WriteLine(euler 5)
     0 // return an integer exit code 14 13 11 8 7 4 2 1
