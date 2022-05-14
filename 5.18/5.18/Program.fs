@@ -53,7 +53,7 @@ let method3 x =
     
 [<EntryPoint>]
 let main argv =
-    Console.WriteLine(method1 15)
-    Console.WriteLine(method2 76359 )
-    Console.WriteLine(method3 15 )
+    Console.WriteLine(method1 15) // 12 10 6  = 3
+    Console.WriteLine(method2 76359 ) //7 
+    Console.WriteLine(method3 15 ) // 12 10 9 6 5 3 -> mindel(15) = 3 -> 10%3 != 0 ->-> 10 * 1 = 10
     0 // return an integer exit code 14 13 11 8 7 4 2 1 (15 12 10 9 6 5 3 )
