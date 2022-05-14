@@ -29,10 +29,31 @@ let method2 x =
     let rec maks3 x _max =
         if x = 0 then _max
         else if (x%10) > _max && (x%10)%3<>0 then maks3 (x/10) (x%10) else  maks3 (x/10) _max
-    maks3 x 0        
+    maks3 x 0      
+
+let minDel x =
+    let rec minDelproc x mindel del =
+        if del = 1 then mindel 
+            else if (x%del) = 0 then minDelproc x del (del-1) else minDelproc x mindel (del-1)
+    minDelproc x x (x-1)                                      
+    
+
+let rec maks xx  x _max =
+    if x = 0 then _max
+        else if (x) > _max && (nod xx x) <> 1 && ((x)%(minDel xx))<>0 then maks xx (x-1) (x) else maks xx (x-1) _max
+   
+let Summm x = 
+    let rec Summmproc x (sum:int)=
+        if x = 0 then sum
+            else if (x%10) < 5 then Summmproc (x/10) (sum+(x%10)) else Summmproc (x/10) sum
+    Summmproc x 0
+
+let method3 x =
+    (maks x (x-1) 1) * Summm x
     
 [<EntryPoint>]
 let main argv =
     Console.WriteLine(method1 15)
     Console.WriteLine(method2 76359 )
+    Console.WriteLine(method3 15 )
     0 // return an integer exit code 14 13 11 8 7 4 2 1 (15 12 10 9 6 5 3 )
