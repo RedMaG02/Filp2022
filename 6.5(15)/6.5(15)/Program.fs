@@ -1,5 +1,5 @@
 ﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
-
+// ЭТО 16 А НЕ 15!!!!!!!!!!!!!!
 open System
 
 let rec readList n = 
@@ -38,4 +38,4 @@ let main argv =
     let list = 
         readList n
     findIndexByMaxAndPrevMax list |> findAmountElementsBetween |> printfn "Кол-во элементов: %d" 
-    0 // return an integer exit code
+    0 // return an integer exit code 
