@@ -2,6 +2,7 @@
 
 open System
 // Define a function to construct a message to print
+
 let checkPalindrome (str:string) =
     let charArray = str.ToCharArray()
     let reversedCharArray = Array.Reverse charArray
@@ -12,6 +13,12 @@ let checkPalindrome (str:string) =
 let getAmountOfWords (str:string) =
     let strArray = str.Split(" ")
     let amount = Array.length strArray
+    amount
+
+let getAmountOfDifferentNumbers (str:string) =
+    let charArray = str.ToCharArray()
+    let newCharArray = Array.distinct charArray
+    let amount = Array.length newCharArray
     amount
 
 [<EntryPoint>]
