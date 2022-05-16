@@ -31,7 +31,7 @@ let sortByAverageASCII (strings:'string list) =
 
 
 let isGlasn (x : char) =
-    (x = 'а') || (x = 'и') || (x = 'е') || (x = 'ё') || (x = 'о') || (x = 'у') || (x = 'ы') || (x = 'э') || (x = 'ю') || (x = 'я')
+    (x = 'а') || (x = 'и') || (x = 'е') || (x = 'ё') || (x = 'о') || (x = 'у') || (x = 'ы') || (x = 'э') || (x = 'ю') || (x = 'я') || (x = 'a') || (x = 'e') || (x = 'y') || (x = 'u') || (x = 'i') || (x = 'o')
 
 let counts x y =
     if (isGlasn (snd y)) && (not (isGlasn (fst y))) then x + 1
@@ -45,14 +45,24 @@ let countSoch str =
 let sortBySoch str_list : string list =
     Seq.toList (Seq.sortBy countSoch str_list)
 
+let choose i=
+    match i with 
+    |1 -> sortByAverageASCII
+    |2 -> sortBySoch
+    |_ -> exit(0)
 
 [<EntryPoint>]
 let main argv =
+    Console.WriteLine("Выберите задачу для решения и введите строку: \n Отсортировать строки в указанном порядке")
+    Console.WriteLine("1 В порядке увеличения квадратичного отклонения среднего веса ASCII-кода символа строки от среднего веса ASCII-кода символа первой строки")
+    Console.WriteLine("2 В порядке увеличения разницы между количеством сочетаний «гласная-согласная» и «согласная-гласная» в строке")
+    let i =
+        Convert.ToInt32(Console.ReadLine())
     let n = 
         Convert.ToInt32(Console.ReadLine())
     let stringList = 
         readStringList n
     let newList =
-        sortBySoch stringList
+        choose i stringList
     writeList newList
     0 // return an integer exit code
