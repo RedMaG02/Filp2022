@@ -7,8 +7,8 @@ let checkPalindrome (str:string) =
     let charArray = str.ToCharArray()
     let reversedCharArray = Array.Reverse charArray
     let reversedString = (string)reversedCharArray
-    if str = reversedString then true
-        else false
+    if str = reversedString then 11
+        else 1
 
 let getAmountOfWords (str:string) =
     let strArray = str.Split(" ")
@@ -21,8 +21,22 @@ let getAmountOfDifferentNumbers (str:string) =
     let amount = Array.length newCharArray
     amount
 
+let choose x (str:string)=
+    match x with 
+    |1 -> checkPalindrome str
+    |2 -> getAmountOfWords str
+    |3 -> getAmountOfDifferentNumbers str
+    |_ -> exit(0)
+
 [<EntryPoint>]
 let main argv =
-    let message = from "F#" // Call the function
-    printfn "Hello world %s" message
+    Console.WriteLine("Выберите задачу для решения и введите строку:")
+    Console.WriteLine("1 проверить на палиндром")
+    Console.WriteLine("2 посчитать количество строк")
+    Console.WriteLine("3 посчитать количество уникальных символов в числе")
+    let n =
+        Convert.ToInt32(Console.ReadLine())
+    let str =
+        Console.ReadLine()
+    Console.WriteLine(choose n str)
     0 // return an integer exit code
