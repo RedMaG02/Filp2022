@@ -56,3 +56,5 @@ waifu(X):- waifu(Y,X),print(Y),nl,fail.
 
 grand_ma(X,Y):- parent(X,Z),parent(Z,Y),woman(X).%13
 grand_mas(X):- grand_ma(Y,X),print(Y),nl,fail.
+
+grand_ma_and_son(X,Y):- (man(Y),woman(X),grandma(X,Y));(man(X),woman(Y),grandma(Y,X)).%14
