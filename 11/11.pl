@@ -74,10 +74,13 @@ findFirst3(X,ANSWER):- findFirst3(X, ANSWER, 0).
 findFirst3(0,ANS,CUR):-(CUR mod 3  \= 0 ->  ANS is CUR; ANS is -1),!.
 findFirst3(X,ANSWER,CUR):- CURN is X mod 10, NEWX is X div 10, (CURN \= 0 -> findFirst3(NEWX,ANSWER,CURN); findFirst3(NEWX,ANSWER,CUR)).
 
-%maxDel3(X,ANSWER):- findFirst3(X,ANSWER1), maxDel3(X,ANSWER,ANSWER1).
 maxDel3(X,ANSWER):- X<10, DEL is (X mod 3),(DEL\=0 -> ANSWER is X; ANSWER is -1),!. %17
 maxDel3(X,ANSWER):- X>9, NEWX is X div 10, CURMAX is (X mod 10),CURMAXOST is (X mod 10) mod 3, maxDel3(NEWX,ANSWER1),  (CURMAXOST\=0  ->( CURMAX > ANSWER1 -> ANSWER is CURMAX; ANSWER is ANSWER1);ANSWER is ANSWER1).
 
 maxDel3Down(X,ANSWER):- findFirst3(X,ANSWER1), maxDel3Down(X,ANSWER,ANSWER1).%18
 maxDel3Down(0,ANS,ANSWER1):-ANS is ANSWER1,!.
 maxDel3Down(X,ANSWER,CURMAX):- NEWX is X div 10, CURX is X mod 10, CURX3 is CURX mod 3, (CURX3 \= 0 -> (CURX > CURMAX -> NEWCURMAX is CURX; NEWCURMAX is CURMAX); NEWCURMAX is CURMAX), maxDel3Down(NEWX,ANSWER,NEWCURMAX).
+
+fib(1,1):-!.
+fib(2,1):-!.
+fib(N,X):- FirstFibN is N-1, SecondFibN is N-2, fib(FirstFibN, FirstFibX),fib(SecondFibN, SecondFibX), X is (FirstFibX + SecondFibX).

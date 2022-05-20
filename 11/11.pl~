@@ -72,7 +72,7 @@ mulDown(X,Y,Z):- X>9, X1 is (X div 10),Z1 is (Z * (X mod 10)), mulDown(X1,Y,Z1).
 
 findFirst3(X,ANSWER):- findFirst3(X, ANSWER, 0).
 findFirst3(0,ANS,CUR):-(CUR mod 3  \= 0 ->  ANS is CUR; ANS is -1),!.
-findFirst3(X,ANSWER,CUR):- CURN is X mod 10, NEWX is X div 10, CURN \= 0 -> findFirst3(NEWX,ANSWER,CURN); findFirst3(NEWX,ANSWER,CUR).
+findFirst3(X,ANSWER,CUR):- CURN is X mod 10, NEWX is X div 10, (CURN \= 0 -> findFirst3(NEWX,ANSWER,CURN); findFirst3(NEWX,ANSWER,CUR)).
 
 %maxDel3(X,ANSWER):- findFirst3(X,ANSWER1), maxDel3(X,ANSWER,ANSWER1).
 maxDel3(X,ANSWER):- X<10, DEL is (X mod 3),(DEL\=0 -> ANSWER is X; ANSWER is -1),!. %17
