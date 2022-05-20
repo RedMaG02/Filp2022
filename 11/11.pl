@@ -81,6 +81,11 @@ maxDel3Down(X,ANSWER):- findFirst3(X,ANSWER1), maxDel3Down(X,ANSWER,ANSWER1).%18
 maxDel3Down(0,ANS,ANSWER1):-ANS is ANSWER1,!.
 maxDel3Down(X,ANSWER,CURMAX):- NEWX is X div 10, CURX is X mod 10, CURX3 is CURX mod 3, (CURX3 \= 0 -> (CURX > CURMAX -> NEWCURMAX is CURX; NEWCURMAX is CURMAX); NEWCURMAX is CURMAX), maxDel3Down(NEWX,ANSWER,NEWCURMAX).
 
-fib(1,1):-!.
+fib(1,1):-!. %19
 fib(2,1):-!.
 fib(N,X):- FirstFibN is N-1, SecondFibN is N-2, fib(FirstFibN, FirstFibX),fib(SecondFibN, SecondFibX), X is (FirstFibX + SecondFibX).
+
+fibDown(N,X):- fibDown(N,X,1,1,2). %20
+fibDown(N,X,PRED1,PRED2,N):- X is PRED1,!.
+fibDown(N,X,PRED1,PRED2,IND):- NEWPRED1 is PRED1 + PRED2, NEWPRED2 is PRED1, NEWIND is IND+1, fibDown(N,X,NEWPRED1,NEWPRED2,NEWIND).
+
