@@ -53,3 +53,6 @@ father(X):-father(Y,X),print(Y),nl,fail.
 
 waifu(X,Y):- parent(X,Z),parent(Y,Z),woman(X).%12
 waifu(X):- waifu(Y,X),print(Y),nl,fail.
+
+grand_ma(X,Y):- parent(X,Z),parent(Z,Y),woman(X).%13
+grand_mas(X):- grand_ma(Y,X),print(Y),nl,fail.
