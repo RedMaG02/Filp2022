@@ -50,6 +50,3 @@ parent(zhdana,zlatomir).
 
 father(X,Y):-man(X),parent(X,Y). %z11
 father(X):-father(Y,X),print(Y),nl,fail.
-
-waifu(X,Y):- parent(X,Z),parent(Y,Z),woman(X).%12
-waifu(X):- waifu(Y,X),print(Y),nl,fail.
