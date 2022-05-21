@@ -35,12 +35,13 @@ method12(X,ANS,SUM,DEL,MAX,I):- NEWI is I + 1, nod(X,I,NOD), INDEX is I mod DEL,
 
 prost(X,ANSWER):- prost(X,ANSWER,1,0).
 prost(_,ANSWER,_,2):- ANSWER is 2,!.
+prost(1,ANSWER,1,_):- ANSWER is 1,!.
 prost(X,ANSWER,X,KOLVO):- ANSWER is KOLVO,!.
 prost(X,ANSWER,DEL,KOLVO):- NEWDEL is DEL + 1, DELEN is X mod DEL,(DELEN=:=0 -> NEWKOLVO is KOLVO + 1; NEWKOLVO is KOLVO), prost(X,ANSWER,NEWDEL,NEWKOLVO).
 
-polinomo(A,B,K):-polinomo(A,B,K,0,1).
-polinomo(_,_,K,_,0):-K is 0,!.
-polinomo(A,B,K,N,_):- NEWN is N + 1, N2 is N*N, AN is A*N, CHISLO is abs(N2 + AN + B), prost(CHISLO,BOOLK), (BOOLK =:= 1 -> NEWK is K+1,NEWB is 1; NEWK is K, NEWB is 0), polinomo(A,B,NEWK,NEWN,NEWB).
+polinomo(A,B,K):-polinomo(A,B,K,0,1,0).
+polinomo(_,_,K,_,0,KO):-K is KO,!.
+polinomo(A,B,K,N,_,KO):- NEWN is N + 1, N2 is N*N, AN is A*N, CHISLO is abs(N2 + AN + B), prost(CHISLO,BOOLK), (BOOLK =:= 1 -> NEWK is KO+1, NEWB is 1; NEWK is KO, NEWB is 0), polinomo(A,B,K,NEWN,NEWB,NEWK).
 
 %method13(ANSWER,A,B,P,MAX)
 method13(ANSWER):-method13(ANSWER,-999,-999,-1000000,0).
