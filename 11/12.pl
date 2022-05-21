@@ -47,3 +47,9 @@ method13(ANSWER):-method13(ANSWER,-999,-999,-1000000,0).
 method13(P,999,1000,P,_):-!.
 method13(ANSWER,A,1000,P,MAX):- NEWA is A +1, method13(ANSWER,NEWA,-999,P,MAX).
 method13(ANSWER,A,B,P,MAX):- NEWB is B+1, polinomo(A,B,K), (K>MAX -> NEWMAX is K, NEWP is A * B; NEWMAX is MAX, NEWP is P), method13(ANSWER,A,NEWB,NEWP,NEWMAX).
+
+
+%method14
+listLenght(LIST,ANSWER):- listLenght(LIST,ANSWER,0).
+listLenght([],ANSWER,L):-ANSWER is L,!.
+listLenght([_|T],ANSWER,L):-NEWL is L + 1, listLenght(T,ANSWER,NEWL).

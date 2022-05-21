@@ -34,7 +34,6 @@ method12(X,ANS,SUM,DEL,MAX,I):- NEWI is I + 1, nod(X,I,NOD), INDEX is I mod DEL,
 % ANSWER1).
 
 prost(X,ANSWER):- prost(X,ANSWER,1,0).
-prost(_,ANSWER,0,_):- ANSWER is 2,!.
 prost(_,ANSWER,_,2):- ANSWER is 2,!.
 prost(X,ANSWER,X,KOLVO):- ANSWER is KOLVO,!.
 prost(X,ANSWER,DEL,KOLVO):- NEWDEL is DEL + 1, DELEN is X mod DEL,(DELEN=:=0 -> NEWKOLVO is KOLVO + 1; NEWKOLVO is KOLVO), prost(X,ANSWER,NEWDEL,NEWKOLVO).
