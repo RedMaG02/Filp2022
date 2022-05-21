@@ -39,9 +39,9 @@ prost(1,ANSWER,1,_):- ANSWER is 1,!.
 prost(X,ANSWER,X,KOLVO):- ANSWER is KOLVO,!.
 prost(X,ANSWER,DEL,KOLVO):- NEWDEL is DEL + 1, DELEN is X mod DEL,(DELEN=:=0 -> NEWKOLVO is KOLVO + 1; NEWKOLVO is KOLVO), prost(X,ANSWER,NEWDEL,NEWKOLVO).
 
-polinomo(A,B,K):-polinomo(A,B,K,0,1).
-polinomo(_,_,K,_,0):-K is 0,!.
-polinomo(A,B,K,N,_):- NEWN is N + 1, N2 is N*N, AN is A*N, CHISLO is abs(N2 + AN + B), prost(CHISLO,BOOLK), (BOOLK =:= 1 -> NEWK is K+1,NEWB is 1; NEWK is K, NEWB is 0), polinomo(A,B,NEWK,NEWN,NEWB).
+polinomo(A,B,K):-polinomo(A,B,K,0,1,0).
+polinomo(_,_,K,_,0,KO):-K is KO,!.
+polinomo(A,B,K,N,_,KO):- NEWN is N + 1, N2 is N*N, AN is A*N, CHISLO is abs(N2 + AN + B), prost(CHISLO,BOOLK), (BOOLK =:= 1 -> NEWK is KO+1, NEWB is 1; NEWK is KO, NEWB is 0), polinomo(A,B,K,NEWN,NEWB,NEWK).
 
 %method13(ANSWER,A,B,P,MAX)
 method13(ANSWER):-method13(ANSWER,-999,-999,-1000000,0).
@@ -54,3 +54,21 @@ method13(ANSWER,A,B,P,MAX):- NEWB is B+1, polinomo(A,B,K), (K>MAX -> NEWMAX is K
 listLenght(LIST,ANSWER):- listLenght(LIST,ANSWER,0).
 listLenght([],ANSWER,L):-ANSWER is L,!.
 listLenght([_|T],ANSWER,L):-NEWL is L + 1, listLenght(T,ANSWER,NEWL).
+
+%readList
+readList(N,LIST):- readList(N,LIST,[]).
+readList(0,LIST,GETLIST):-LIST is GETLIST,!.
+readList(N,LIST,GETLIST):- NEWN is N-1, read(X), append(GETLIST,[X],GETLIST1), readList(NEWN,LIST,GETLIST1).
+
+writeList([]):-!.
+writeList([H|T]):- write(H),write(' '), writeList(T).
+
+
+findMax([H|T],X):- findMax(T,X,H).
+findMax([],X,MAX):- X is MAX,!.
+findMax([H|T],X,MAX):- (H>MAX -> NEWMAX is H; NEWMAX is MAX), findMax(T,X,NEWMAX).
+
+getByIndex([H|_],0,X):- X is H,!.
+getByIndex([_|T],N,X):-NEWN is N-1, getByIndex(T,NEWN,X).
+
+method53(LIST,N):- findMax(LIST,X), getByIndex(LIST,N,Y), (X=:=Y-> write(true);write(false)),!.

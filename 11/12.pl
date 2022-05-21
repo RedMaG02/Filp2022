@@ -54,3 +54,21 @@ method13(ANSWER,A,B,P,MAX):- NEWB is B+1, polinomo(A,B,K), (K>MAX -> NEWMAX is K
 listLenght(LIST,ANSWER):- listLenght(LIST,ANSWER,0).
 listLenght([],ANSWER,L):-ANSWER is L,!.
 listLenght([_|T],ANSWER,L):-NEWL is L + 1, listLenght(T,ANSWER,NEWL).
+
+%readList
+readList(N,LIST):- readList(N,LIST,[]).
+readList(0,LIST,GETLIST):-LIST is GETLIST,!.
+readList(N,LIST,GETLIST):- NEWN is N-1, read(X), append(GETLIST,[X],GETLIST1), readList(NEWN,LIST,GETLIST1).
+
+writeList([]):-!.
+writeList([H|T]):- write(H),write(' '), writeList(T).
+
+
+findMax([H|T],X):- findMax(T,X,H).
+findMax([],X,MAX):- X is MAX,!.
+findMax([H|T],X,MAX):- (H>MAX -> NEWMAX is H; NEWMAX is MAX), findMax(T,X,NEWMAX).
+
+getByIndex([H|_],0,X):- X is H,!.
+getByIndex([_|T],N,X):-NEWN is N-1, getByIndex(T,NEWN,X).
+
+method53(LIST,N):- findMax(LIST,X), getByIndex(LIST,N,Y), (X=:=Y-> write(da);write(net)),!.
