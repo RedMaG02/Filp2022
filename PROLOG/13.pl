@@ -48,3 +48,20 @@ method352(X,ANSWERLIST):-method352(ANSWERLIST,[],X,X).
 method352(ANSWERLIST,LIST,2,_):-append1(LIST,[1],NEWLIST), ANSWERLIST = NEWLIST,!.
 method352(ANSWERLIST,LIST,PR,X):-NEWPR is PR - 1, prost(PR,BOOL), XX is X mod PR, (XX =:= 0, BOOL =:= 1 -> amountOfDividers(X,PR,I), appendXTimes(LIST,PR,I,NEWLIST); NEWLIST = LIST ), method352(ANSWERLIST, NEWLIST, NEWPR, X).
 
+
+
+inList([H|_],H).
+inList([_|T],X):-inList(T,X).
+
+method14 :-
+    LIST = [_, _, _],
+    inList(LIST,[белокуров,_]),
+    inList(LIST,[чернов,_]),
+    inList(LIST,[рыжов,_]),
+    inList(LIST,[_,рыжий]),
+    inList(LIST,[_,блондин]),
+    inList(LIST,[_,брюнет]),
+    not(inList(LIST,[белокуров,блондин])),
+    not(inList(LIST,[чернов,брюнет])),
+    not(inList(LIST,[рыжов,рыжий])),
+    write(LIST).
