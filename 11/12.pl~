@@ -71,4 +71,17 @@ findMax([H|T],X,MAX):- (H>MAX -> NEWMAX is H; NEWMAX is MAX), findMax(T,X,NEWMAX
 getByIndex([H|_],0,X):- X is H,!.
 getByIndex([_|T],N,X):-NEWN is N-1, getByIndex(T,NEWN,X).
 
-method53(LIST,N):- findMax(LIST,X), getByIndex(LIST,N,Y), (X=:=Y-> write(true);write(false)),!.
+method53(LIST,N):- findMax(LIST,X), getByIndex(LIST,N,Y), (X=:=Y-> write(da);write(net)),!.
+
+
+findMin([H|T],X):- findMin(T,X,H).
+findMin([],X,MIN):- X is MIN,!.
+findMin([H|T],X,MIN):- (H<MIN -> NEWMIN is H; NEWMIN is MIN), findMin(T,X,NEWMIN).
+
+findIndexByMax([H|T], ANSWER):- findIndexByMax(T,ANSWER,0,H,0).
+findIndexByMax([],ANSWER,_,_,IMAX):- ANSWER is IMAX,!.
+findIndexByMax([H|T],ANSWER,I,MAX,IMAX):- NEWI is I + 1, (H>MAX -> NEWMAX is H, NEWIMAX is NEWI; NEWMAX is MAX, NEWIMAX is IMAX), findIndexByMax(T,ANSWER,NEWI,NEWMAX,NEWIMAX).
+
+destroyMaxByIndex(LIST,INDEX,ANSWERLIST):- findMin(LIST, MINIMAL1), MINIMAL is MINIMAL1 - 1, destroyMaxByIndex(LIST,INDEX,ANSWERLIST,[],MINIMAL).
+destroyMaxByIndex([_|T],0,ANSWERLIST,LISTBEFORE,MINIMAL):- append([MINIMAL],T,ANS), append(LISTBEFORE,ANS,ANSWER), ANSWERLIST = ANSWER,!.
+destroyMaxByIndex([H|T],INDEX,ANSWERLIST,LISTBEFORE,MINIMAL):- NEWINDEX is INDEX - 1, append(LISTBEFORE,[H],NEWLISTBEFORE), destroyMaxByIndex(T,NEWINDEX,ANSWERLIST,NEWLISTBEFORE,MINIMAL).
