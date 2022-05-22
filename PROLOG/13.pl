@@ -81,3 +81,17 @@ method15:-
     not(inList(LIST,[вал€,_,белые])),
     not(inList(LIST,[наст€,Y,Y])),
     write(LIST).
+
+method16:-
+    LIST=[_,_,_],
+    %inList(LIST,[ƒќЋ∆Ќќ—“№,‘јћ»Ћ»я,—≈—“–џ(Ѕ–ј“№я),¬ќ«–ј—“,—”ѕ–”√]),
+    inList(LIST,[слесарь,X1,0,0,_]),
+    inList(LIST,[токарь,X2,_,1,_]),
+    inList(LIST,[сварщик,X3,_,_,_]),
+    inList(LIST,[_,семенов,_,2,борисов]),
+    inList(LIST,[_,иванов,_,_,_]),
+    inList(LIST,[_,борисов,1,_,_]),
+    write('слесарь-'),write(X1),nl,
+    write('токарь-'),write(X2),nl,
+    write('сварщик-'),write(X3),nl,
+    write(LIST).
