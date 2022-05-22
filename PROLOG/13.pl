@@ -54,7 +54,7 @@ inList([H|_],H).
 inList([_|T],X):-inList(T,X).
 
 method14 :-
-    LIST = [_, _, _],
+    LIST = [_,_,_],
     inList(LIST,[белокуров,_]),
     inList(LIST,[чернов,_]),
     inList(LIST,[рыжов,_]),
@@ -64,4 +64,20 @@ method14 :-
     not(inList(LIST,[белокуров,блондин])),
     not(inList(LIST,[чернов,брюнет])),
     not(inList(LIST,[рыжов,рыжий])),
+    write(LIST).
+
+method15:-
+    LIST=[_,_,_],
+    inList(LIST,[аня,X,X]),
+    inList(LIST,[валя,_,_]),
+    inList(LIST,[настя,зеленые,_]),
+    inList(LIST,[_,белые,_]),
+    inList(LIST,[_,синие,_]),
+    inList(LIST,[_,зеленые,_]),
+    inList(LIST,[_,_,белые]),
+    inList(LIST,[_,_,синие]),
+    inList(LIST,[_,_,зеленые]),
+    not(inList(LIST,[валя,белые,_])),
+    not(inList(LIST,[валя,_,белые])),
+    not(inList(LIST,[настя,Y,Y])),
     write(LIST).
