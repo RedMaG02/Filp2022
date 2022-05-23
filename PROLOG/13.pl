@@ -146,3 +146,22 @@ method17:-
     not(inList(LIST,[банка,лимонад])),
     not(inList(LIST,[банка,вода])),
     write(LIST).
+
+
+method18:-
+    LIST=[_,_,_,_],
+    inList(LIST,[воронов,_]),
+    inList(LIST,[павлов,_]),
+    inList(LIST,[левицкий,_]),
+    inList(LIST,[сахаров,_]),
+    inList(LIST,[_,танцор]),
+    inList(LIST,[_,художник]),
+    inList(LIST,[_,писатель]),
+    inList(LIST,[_,певец]),
+    not(inList(LIST,[воронов,певец])),
+    not(inList(LIST,[левицкий,певец])),
+    not(inList(LIST,[павлов,писатель])),
+    not(inList(LIST,[павлов,художник])),
+    not(inList(LIST,[воронов,писатель])),
+    not(inList(LIST,[сахаров,писатель])),
+    write(LIST).
