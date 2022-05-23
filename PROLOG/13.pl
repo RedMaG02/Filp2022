@@ -165,3 +165,26 @@ method18:-
     not(inList(LIST,[воронов,писатель])),
     not(inList(LIST,[сахаров,писатель])),
     write(LIST).
+
+method19:-
+    LIST=[_,_,_],
+    %inList(LIST,[ИМЯ,МЕСТО,НАЦИОНАЛЬНОСТЬ,СПОРТ]),
+    inList(LIST,[майкл,_,_,_]),
+    inList(LIST,[саймон,_,_,_]),
+    inList(LIST,[ричард,_,_,X2]),
+    inList(LIST,[_,1,_,_]),
+    inList(LIST,[_,2,_,_]),
+    inList(LIST,[_,3,_,_]),
+    inList(LIST,[_,_,американец,_]),
+    inList(LIST,[_,_,израильтянин,_]),
+    inList(LIST,[X1,_,австралиец,_]),
+    inList(LIST,[_,_,_,крикет]),
+    inList(LIST,[_,_,_,баскетбол]),
+    inList(LIST,[_,_,_,теннис]),
+    inList(LIST,[майкл,_,_,баскетбол]),
+    inList(LIST,[_,1,_,крикет]),
+    inList(LIST,[саймон,_,израильтянин,_]),
+    not(inList(LIST,[майкл,_,американец,_])),
+    not(inList(LIST,[саймон,_,_,теннис])),
+    write('Австралиец -'),write(X1),nl,
+    write('Ричард -'),write(X2).

@@ -146,3 +146,45 @@ method17:-
     not(inList(LIST,[банка,лимонад])),
     not(inList(LIST,[банка,вода])),
     write(LIST).
+
+
+method18:-
+    LIST=[_,_,_,_],
+    inList(LIST,[воронов,_]),
+    inList(LIST,[павлов,_]),
+    inList(LIST,[левицкий,_]),
+    inList(LIST,[сахаров,_]),
+    inList(LIST,[_,танцор]),
+    inList(LIST,[_,художник]),
+    inList(LIST,[_,писатель]),
+    inList(LIST,[_,певец]),
+    not(inList(LIST,[воронов,певец])),
+    not(inList(LIST,[левицкий,певец])),
+    not(inList(LIST,[павлов,писатель])),
+    not(inList(LIST,[павлов,художник])),
+    not(inList(LIST,[воронов,писатель])),
+    not(inList(LIST,[сахаров,писатель])),
+    write(LIST).
+
+method19:-
+    LIST=[_,_,_],
+    %inList(LIST,[ИМЯ,МЕСТО,НАЦИОНАЛЬНОСТЬ,СПОРТ]),
+    inList(LIST,[майкл,_,_,_]),
+    inList(LIST,[саймон,_,_,_]),
+    inList(LIST,[ричард,_,_,X2]),
+    inList(LIST,[_,1,_,_]),
+    inList(LIST,[_,2,_,_]),
+    inList(LIST,[_,3,_,_]),
+    inList(LIST,[_,_,американец,_]),
+    inList(LIST,[_,_,израильтянин,_]),
+    inList(LIST,[X1,_,австралиец,_]),
+    inList(LIST,[_,_,_,крикет]),
+    inList(LIST,[_,_,_,баскетбол]),
+    inList(LIST,[_,_,_,теннис]),
+    inList(LIST,[майкл,_,_,баскетбол]),
+    inList(LIST,[_,1,_,крикет]),
+    inList(LIST,[саймон,_,израильтянин,_]),
+    not(inList(LIST,[майкл,_,американец,_])),
+    not(inList(LIST,[саймон,_,_,теннис])),
+    write('australian ='),write(X1),nl,
+    write('richard ='),write(X2).
