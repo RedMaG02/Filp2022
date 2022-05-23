@@ -95,3 +95,54 @@ method16:-
     write('токарь-'),write(X2),nl,
     write('сварщик-'),write(X3),nl,
     write(LIST).
+
+%method17:-
+   % LIST=[_,_,_,_],
+   % inList(LIST,[бутылка,_,_,_,_,_]),
+   % inList(LIST,[стакан,_,_,_,_,_]),
+   % inList(LIST,[кувшин,_,_,_,_,_]),
+   % inList(LIST,[банка,_,_,_,_,_]),
+   % inList(LIST,[_,молоко,_,_,_,_]),
+   % inList(LIST,[_,лимонад,_,_,_,_]),
+   % inList(LIST,[_,квас,_,_,_,_]),
+   % inList(LIST,[_,вода,_,_,_,_]),
+   % inList(LIST,[стакан,_,_,молоко,банка,_]),
+   % inList(LIST,[стакан,_,молоко,_,_,банка]),
+   % inList(LIST,[_,лимонад,_,квас,кувшин,_]),
+   % inList(LIST,[_,лимонад,квас,_,_,кувшин]),
+   % not(inList(LIST,[бутылка,молоко,_,_,_,_])),
+   % not(inList(LIST,[бутылка,вода,_,_,_,_])),
+   % not(inList(LIST,[банка,лимонад,_,_,_,_])),
+   % not(inList(LIST,[банка,вода,_,_,_,_])),
+   % write(LIST).
+
+right([_],_,_):-fail.
+right([A|[B|_]],A,B).
+right([_|LIST],A,B):-right(LIST,A,B).
+
+left([_],_,_):-fail.
+left([B|[A|_]],A,B).
+left([_|LIST],A,B):-left(LIST,A,B).
+
+mezhdy(LIST,A,B):-right(LIST,A,B).
+mezhdy(LIST,A,B):-left(LIST,A,B).
+
+method17:-
+    LIST=[_,_,_,_],
+    inList(LIST,[бутылка,_]),
+    inList(LIST,[стакан,_]),
+    inList(LIST,[кувшин,_]),
+    inList(LIST,[банка,_]),
+    inList(LIST,[_,молоко]),
+    inList(LIST,[_,лимонад]),
+    inList(LIST,[_,квас]),
+    inList(LIST,[_,вода]),
+    right(LIST,[кувшин,_],[_,лимонад]),
+    right(LIST,[_,лимонад],[_,квас]),
+    mezhdy(LIST,[стакан,_],[банка,_]),
+    mezhdy(LIST,[стакан,_],[_,молоко]),
+    not(inList(LIST,[бутылка,молоко])),
+    not(inList(LIST,[бутылка,вода])),
+    not(inList(LIST,[банка,лимонад])),
+    not(inList(LIST,[банка,вода])),
+    write(LIST).

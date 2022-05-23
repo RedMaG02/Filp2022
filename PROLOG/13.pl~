@@ -88,10 +88,61 @@ method16:-
     inList(LIST,[слесарь,X1,0,0,_]),
     inList(LIST,[токарь,X2,_,1,_]),
     inList(LIST,[сварщик,X3,_,_,_]),
-    inList(LIST,[_,семенов,_,2,borisov]),
+    inList(LIST,[_,семенов,_,2,борисов]),
     inList(LIST,[_,иванов,_,_,_]),
     inList(LIST,[_,борисов,1,_,_]),
     write('слесарь-'),write(X1),nl,
     write('токарь-'),write(X2),nl,
     write('сварщик-'),write(X3),nl,
     write(LIST).
+
+method17:-
+    LIST=[_,_,_,_],
+    inList(LIST,[бутылка,_,_,_,_,_]),
+    inList(LIST,[стакан,_,_,_,_,_]),
+    inList(LIST,[кувшин,_,_,_,_,_]),
+    inList(LIST,[банка,_,_,_,_,_]),
+    inList(LIST,[_,молоко,_,_,_,_]),
+    inList(LIST,[_,лимонад,_,_,_,_]),
+    inList(LIST,[_,квас,_,_,_,_]),
+    inList(LIST,[_,вода,_,_,_,_]),
+    inList(LIST,[стакан,_,_,молоко,банка,_]),
+    inList(LIST,[стакан,_,молоко,_,_,банка]),
+    inList(LIST,[_,лимонад,_,квас,кувшин,_]),
+    inList(LIST,[_,лимонад,квас,_,_,кувшин]),
+    not(inList(LIST,[бутылка,молоко,_,_,_,_])),
+    not(inList(LIST,[бутылка,вода,_,_,_,_])),
+    not(inList(LIST,[банка,лимонад,_,_,_,_])),
+    not(inList(LIST,[банка,вода,_,_,_,_])),
+    write(LIST).
+
+right(_,_,[_]):-fail.
+right(A,B,[A|[B|_]]).
+right(A,B,[_|List]):-right(A,B,List).
+
+left(_,_,[_]):-fail.
+left(A,B,[B|[A|_]]).
+left(A,B,[_|List]):-left(A,B,List).
+
+next(A,B,List):-right(A,B,List).
+next(A,B,List):-left(A,B,List).
+
+task7:-
+    Kortej=[_,_,_,_],
+    inList(Kortej,[bottle,_]),
+    inList(Kortej,[glass,_]),
+    inList(Kortej,[kuvshin,_]),
+    inList(Kortej,[jar,_]),
+    inList(Kortej,[_,leche]),
+    inList(Kortej,[_,lemonade]),
+    inList(Kortej,[_,kvas]),
+    inList(Kortej,[_,agua]),
+    not(inList(Kortej,[bottle,leche])),
+    not(inList(Kortej,[bottle,agua])),
+    not(inList(Kortej,[jar,lemonade])),
+    not(inList(Kortej,[jar,agua])),
+    right([kuvshin,_],[_,lemonade],Kortej),
+    right([_,lemonade],[_,kvas],Kortej),
+    next([glass,_],[jar,_],Kortej),
+    next([glass,_],[_,leche],Kortej),
+    write(Kortej).
