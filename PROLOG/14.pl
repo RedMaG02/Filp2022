@@ -162,5 +162,39 @@ m9toFile:-
     not(m9),
     told.
 
+m10:-
+    WORD=[_,_,_,_,_,_],
+    sochet([a,b,c,d,e,f],2,[A,B]),
+    inListDelete([a,b,c,d,e,f],A,T1),
+    inListDelete(T1,B,T11),
+
+    sochet([0,1,2,3,4,5],2,[IA1,IA2]),
+
+    toIndex(WORD,IA1,A),
+    toIndex(WORD,IA2,A),
+
+    inListDelete([0,1,2,3,4,5],IA1,T2),
+    inListDelete(T2,IA2,T22),
+
+    sochet(T22,2,[IB1,IB2]),
+
+    toIndex(WORD,IB1,B),
+    toIndex(WORD,IB2,B),
+
+    inListDelete(T22,IB1,T222),
+    inListDelete(T222,IB2,[I1,I2]),
+
+    razmesh(T11,2,[],[X1,X2]),
+
+    toIndex(WORD, I1, X1),
+    toIndex(WORD, I2, X2),
+
+    writeList(WORD), nl, fail.
+
+m10toFile:-
+    tell('j:/FILP/Filp2022/PROLOG/m10.txt'),
+    not(m10),
+    told.
+
 
 
