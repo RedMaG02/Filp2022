@@ -113,5 +113,28 @@ m7toFile:-
     not(m7),
     told.
 
+m8:-
+    WORD=[_,_,_,_,_],
+    sochet([0,1,2,3,4],2,[IA1,IA2]),
+
+    toIndex(WORD,IA1,a),
+    toIndex(WORD,IA2,a),
+
+    inListDelete([0,1,2,3,4],IA1,T2),
+    inListDelete(T2,IA2,[I1,I2,I3]),
+
+    razmesh([b,c,d,e,f],3,[],[X1,X2,X3]),
+
+    toIndex(WORD, I1, X1),
+    toIndex(WORD, I2, X2),
+    toIndex(WORD, I3, X3),
+
+    writeList(WORD), nl, fail.
+
+m8toFile:-
+    tell('j:/FILP/Filp2022/PROLOG/m8.txt'),
+    not(m8),
+    told.
+
 
 
