@@ -80,8 +80,38 @@ sochet([H|TAIL], K, [H|TAIL2]):- NEWK is K-1, sochet(TAIL,NEWK,TAIL2).
 sochet([_|TAIL],K,ANSWER):- sochet(TAIL,K,ANSWER).
 m5:- tell('j:/FILP/Filp2022/PROLOG/sochet.txt'), not(sochet([1,2,3,4],3)),told.
 
-sochetP(LIST,K):- sochets(LIST,K,ANSWER), write(ANSWER),nl,fail.
+sochetP(LIST,K):- sochetP(LIST,K,ANSWER), write(ANSWER),nl,fail.
 sochetP(_,0,[]):-!.
 sochetP([H|TAIL], K, [H|TAIL2]):- NEWK is K - 1, sochetP([H|TAIL],NEWK,TAIL2).
 sochetP([_|TAIL],K,ANSWER):- sochetP(TAIL,K,ANSWER).
 m6:- tell('j:/FILP/Filp2022/PROLOG/sochetP.txt'), not(sochetP([1,2,3,4],3)),told.
+
+toIndex(L,I,El):-toIndex(L,I,El,0).
+toIndex([H|_],K,H,K):-!.
+toIndex([_|Tail],I,El,Cou):- Cou1 is Cou + 1, toIndex(Tail,I,El,Cou1).
+
+m7:-
+    WORD=[_,_,_,_,_],
+    sochet([0,1,2,3,4],2,[IA1,IA2]),
+
+    toIndex(WORD,IA1,a),
+    toIndex(WORD,IA2,a),
+
+    inListDelete([0,1,2,3,4],IA1,T2),
+    inListDelete(T2,IA2,[I1,I2,I3]),
+
+    razmeshP([b,c,d,e,f],3,[],[X1,X2,X3]),
+
+    toIndex(WORD, I1, X1),
+    toIndex(WORD, I2, X2),
+    toIndex(WORD, I3, X3),
+
+    write(WORD), nl, fail.
+
+m7toFile:-
+    tell('j:/FILP/Filp2022/PROLOG/m7.txt'),
+    not(m7),
+    told.
+
+
+
