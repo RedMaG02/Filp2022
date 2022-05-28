@@ -8,6 +8,9 @@ writeString([H|T]):-put(H),writeString(T).
 writeListOfString([]):-!.
 writeListOfString([H|T]):-writeString(H),nl,writeListOfString(T).
 
+writeList([]):-!.
+writeList([H|T]):-write(H),writeList(T).
+
 
 reverseString(LIST,ANSWERLIST):- reverseString(LIST,ANSWERLIST,[]).
 reverseString([],CURLIST,CURLIST):-!.
@@ -26,6 +29,8 @@ method411([H|T],ANSWER,K):- (H=:=32 -> NEWK is K+1;NEWK = K), method411(T,ANSWER
 method411Test:- readString(STR,N), method411(STR,K), write(K).
 
 
+
+
 inListDelete([X|T],X,T).
 inListDelete([H|T],X,[H|T1]):- inListDelete(T,X,T1).
 
@@ -34,6 +39,8 @@ listRavni([],[],B):- B is 1,!.
 listRavni([H|T],[H|T2],B):- listRavni(T,T2,B).
 listRavni([_|T],[_|T2],_):- listRavni(T,T2,0).
 
+
+
 deleteAllXElements(LIST,X,ANSWERLIST):- deleteAllXElements(LIST,X,ANSWERLIST,[]).
 deleteAllXElements([],_,LIST,LIST):-!.
 deleteAllXElements([H|T],X,ANSWERLIST,CURLIST):- (H=:=X -> NEWCURLIST = CURLIST; append(CURLIST,[H],NEWCURLIST) ), deleteAllXElements(T,X,ANSWERLIST,NEWCURLIST).
@@ -41,3 +48,40 @@ deleteAllXElements([H|T],X,ANSWERLIST,CURLIST):- (H=:=X -> NEWCURLIST = CURLIST;
 method515(LIST,ANSWER):- method515(LIST,ANSWER,0).
 method515([],K,K):-!.
 method515([H|T],ANSWER,K):- NEWK is K + 1, deleteAllXElements([H|T],H,NEWLIST), method515(NEWLIST,ANSWER,NEWK).
+
+
+inList([X|_],X).
+inList([_|T],X):- inList(T,X).
+
+razmeshP(LIST,K):- razmeshP(LIST,K,[],ANSWER), write(ANSWER), nl, fail.
+razmeshP(_,0,RESULT,RESULT):-!.
+razmeshP(LIST,K,RESULT,ANSWER):- inList(LIST,X), NEWK is K - 1, razmeshP(LIST,NEWK,[X|RESULT],ANSWER).
+m1:- tell('j:/FILP/Filp2022/PROLOG/razmeshP.txt'), not(razmeshP([1,2,3,4],3)),told.
+
+perest(LIST):- perest(LIST,[],ANSWER), write(ANSWER), nl, fail.
+perest([],RESULT,RESULT):-!.
+perest(LIST,RESULT,ANSWER):- inListDelete(LIST,X,NEWLIST), perest(NEWLIST,[X|RESULT],ANSWER).
+m2:- tell('j:/FILP/Filp2022/PROLOG/perest.txt'), not(perest([1,2,3,4])),told.
+
+razmesh(LIST,K):- razmesh(LIST,K,[],ANSWER), write(ANSWER),nl, fail.
+razmesh(_,0,RESULT,RESULT):-!.
+razmesh(LIST,K,RESULT,ANSWER):- NEWK is K - 1, inListDelete(LIST,X,NEWLIST), razmesh(NEWLIST,NEWK,[X|RESULT],ANSWER).
+m3:- tell('j:/FILP/Filp2022/PROLOG/razmesh.txt'), not(razmesh([1,2,3,4],3)),told.
+
+sochets(LIST):- sochets(LIST,ANSWER), write(ANSWER),nl,fail.
+sochets([],[]):-!.
+sochets([H|TAIL],[H|TAIL2]):- sochets(TAIL,TAIL2).
+sochets([_|TAIL],ANSWER):- sochets(TAIL,ANSWER).
+m4:- tell('j:/FILP/Filp2022/PROLOG/subsets.txt'), not(sochets([1,2,3,4])),told.
+
+sochet(LIST,K):- sochet(LIST,K,ANSWER), write(ANSWER),nl,fail.
+sochet(_,0,[]):-!.
+sochet([H|TAIL], K, [H|TAIL2]):- NEWK is K-1, sochet(TAIL,NEWK,TAIL2).
+sochet([_|TAIL],K,ANSWER):- sochet(TAIL,K,ANSWER).
+m5:- tell('j:/FILP/Filp2022/PROLOG/sochet.txt'), not(sochet([1,2,3,4],3)),told.
+
+sochetP(LIST,K):- sochetP(LIST,K,ANSWER), write(ANSWER),nl,fail.
+sochetP(_,0,[]):-!.
+sochetP([H|TAIL], K, [H|TAIL2]):- NEWK is K - 1, sochetP([H|TAIL],NEWK,TAIL2).
+sochetP([_|TAIL],K,ANSWER):- sochetP(TAIL,K,ANSWER).
+m6:- tell('j:/FILP/Filp2022/PROLOG/sochetP.txt'), not(sochetP([1,2,3,4],3)),told.
