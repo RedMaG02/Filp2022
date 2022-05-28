@@ -9,7 +9,18 @@ writeListOfString([]):-!.
 writeListOfString([H|T]):-writeString(H),nl,writeListOfString(T).
 
 
-
 reverseString(LIST,ANSWERLIST):- reverseString(LIST,ANSWERLIST,[]).
 reverseString([],CURLIST,CURLIST):-!.
 reverseString([H|T],ANSWERLIST,CURLIST):- reverseString(T,ANSWERLIST,[H|CURLIST]).
+
+method34(LIST):-reverseString(LIST,REVLIST), method34(LIST,REVLIST,1).
+method34([],[],B):- B is 1,!.
+method34([H|T],[H|T2],B):- method34(T,T2,B).
+method34([_|T],[_|T2],_):- method34(T,T2,0).
+
+
+method411(LIST,ANSWER):- method411(LIST,ANSWER,1).
+method411([],K,K):-!.
+method411([H|T],ANSWER,K):- (H=:=32 -> NEWK is K+1;NEWK = K), method411(T,ANSWER,NEWK).
+
+method411Test:- read(N), readString(STR,N), method411(STR,K), write(N).
