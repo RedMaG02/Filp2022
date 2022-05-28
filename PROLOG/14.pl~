@@ -106,7 +106,7 @@ m7:-
     toIndex(WORD, I2, X2),
     toIndex(WORD, I3, X3),
 
-    write(WORD), nl, fail.
+    writeList(WORD), nl, fail.
 
 m7toFile:-
     tell('j:/FILP/Filp2022/PROLOG/m7.txt'),
