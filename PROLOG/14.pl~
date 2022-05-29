@@ -202,16 +202,3 @@ method11:-
     readString(STR,N),
     writeString(STR), write(', '), writeString(STR), write(', '), writeString(STR), write(', '), write(N).
 
-method12:- readString(STR,N), method411(STR,K), write(K).
-
-writeXITimes(_,0):-!.
-writeXITimes(X,I):-NEWI is I - 1, put(X), writeXITimes(X,NEWI).
-
-get3El(STR,STR):-!.
-
-method14:-
-    readString(STR,N),
-
-    (N>5 ->get3El(STR,[H1,H2,H3|_]), reverseString(STR,[T1,T2,T3|_]),
-     put(H1), put(H2), put(H3), put(T1), put(T2), put(T3);
-     writeXITimes(H1,N)).
