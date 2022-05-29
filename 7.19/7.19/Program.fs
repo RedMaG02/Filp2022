@@ -7,8 +7,8 @@ let checkPalindrome (str:string) =
     let charArray = str.ToCharArray()
     let reversedCharArray = Array.Reverse charArray
     let reversedString = (string)reversedCharArray
-    if str = reversedString then 11
-        else 1
+    if str = reversedString then 1
+        else 0
 
 let getAmountOfWords (str:string) =
     let strArray = str.Split(" ")

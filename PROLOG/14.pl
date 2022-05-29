@@ -198,3 +198,7 @@ m10toFile:-
 
 
 
+method11:-
+    readString(STR,N),
+    writeString(STR), write(', '), writeString(STR), write(', '), writeString(STR), write(', '), write(N).
+
