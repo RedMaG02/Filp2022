@@ -215,3 +215,13 @@ method14:-
     (N>5 ->get3El(STR,[H1,H2,H3|_]), reverseString(STR,[T1,T2,T3|_]),
      put(H1), put(H2), put(H3), put(T1), put(T2), put(T3);
      writeXITimes(H1,N)).
+
+getNumberList(LIST,X,NEWLIST):- getNumberList(LIST,X,NEWLIST,[],1).
+getNumberList([],_,CURLIST,CURLIST,_):-!.
+getNumberList([H|T],X,ANSWERLIST,CURLIST,I):- NEWI is I + 1, (H=:=X -> append(CURLIST,[I],NEWCURLIST);NEWCURLIST = CURLIST), getNumberList(T,X,ANSWERLIST,NEWCURLIST,NEWI).
+
+method15:-
+    readString(STR,_),
+    reverseString(STR,[H|_]),
+    getNumberList(STR,H,ANSWERLIST),
+    write(ANSWERLIST).
