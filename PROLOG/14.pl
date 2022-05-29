@@ -225,3 +225,19 @@ method15:-
     reverseString(STR,[H|_]),
     getNumberList(STR,H,ANSWERLIST),
     write(ANSWERLIST).
+
+
+splitString(STR, SEP, ANSWER) :-char_code(SEP, SEPCODE), splitString(STR, SEPCODE, [], [], ANSWER).
+splitString([], _, CURWORD, CURWORDLIST, ANSWER):- append(CURWORDLIST, [CURWORD], NEWWL), ANSWER = NEWWL,!.
+splitString([SEP|T], SEP, CURWORD, CURWORDLIST, ANSWER):-append(CURWORDLIST, [CURWORD], NEWWL), splitString(T, SEP, [], NEWWL, ANSWER),!.
+splitString([S|T], Separator, CurWord, CurWordList, Ans):- append(CurWord, [S], NewWord), splitString(T, Separator, NewWord, CurWordList, Ans),!.
+
+countWords(LIST, X, ANSWER):-countWords(LIST, X, 0, ANSWER).
+countWords([], _, ANSWER, ANSWER):- !.
+countWords([X|T], X, COUNT, ANSWER):- NEWCOUNT is COUNT + 1, countWords(T, X, NEWCOUNT, ANSWER),!.
+countWords([_|T], X, COUNT, ANSWER):- countWords(T, X, COUNT, ANSWER),!.
+
+method13(STR, ANSWER) :-splitString(STR, " ", WORDS), method13(WORDS, WORDS, 0, [], ANSWER).
+method13(WORDS, [WORD|T], CURMAX, _, ANSWER):- countWords(WORDS, WORD, COUNT), COUNT > CURMAX, NEWMAX is COUNT, NEWMAXWORD = WORD, method13(WORDS, T, NEWMAX, NEWMAXWORD, ANSWER),!.
+method13(WORDS, [_|T], CURMAX, CURMAXWORD, ANSWER):- method13(WORDS, T, CURMAX, CURMAXWORD, ANSWER),!.
+method13(_, [], _, ANSWER, ANSWER) :-!.
